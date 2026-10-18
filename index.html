@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رواق الخط العربي | وائل دهشان</title>
+<meta name="description" content="منصة تعليمية متخصصة في فنون الخط العربي وقواعد لغة الضاد، دروس مرئية مع القواعد والشواهد.">
+<meta name="theme-color" content="#0f4c3a">
+<meta property="og:title" content="رواق الخط العربي | وائل دهشان">
+<meta property="og:description" content="دروس مرئية في الخط العربي وقواعد اللغة.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0f4c3a;--primary-dark:#0a3327;--accent:#c59b27;--accent-light:#fef9e7;
+  --bg:#f4f6f5;--card:#fff;--text:#1f2937;--muted:#5b6470;--border:#e1e5e3;
+  --radius:14px;--shadow:0 4px 14px rgba(15,76,58,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;padding:1.6rem 1rem 1.3rem;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.18);border-bottom:3px solid var(--accent)}
+header h1{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800}
+header p{color:#f1d98a;font-size:.98rem;font-weight:500;margin-top:.2rem}
+.stats{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.3rem 1rem;font-size:.9rem;display:flex;align-items:center;gap:.5rem}
+.stat b{color:#f1d98a;font-size:1.05rem;font-variant-numeric:tabular-nums;min-width:1.5ch}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+
+.container{max-width:1300px;margin:1.5rem auto;padding:0 1rem;display:grid;grid-template-columns:1fr 370px;gap:1.5rem;width:100%;flex-grow:1;align-items:start}
+@media(max-width:900px){.container{grid-template-columns:1fr}}
+
+.card{background:var(--card);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);border:1px solid var(--border)}
+.frame{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#0b0f0d;margin-bottom:1.1rem}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.frame .empty{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:#cbd5d0;text-align:center;padding:1rem}
+.frame.invalid .empty{display:flex}
+.frame.invalid iframe{display:none}
+
+.tag{display:inline-block;background:var(--accent-light);color:var(--primary);border:1px solid var(--accent);padding:.1rem .85rem;border-radius:999px;font-size:.85rem;font-weight:700;margin-bottom:.5rem}
+.lesson h2{font-size:1.45rem;color:var(--primary);margin-bottom:.5rem;line-height:1.5}
+.notes{background:var(--accent-light);border-right:4px solid var(--accent);padding:1rem;border-radius:6px;margin-top:.9rem}
+.notes strong{display:block;color:var(--primary);margin-bottom:.2rem}
+.nav{display:flex;justify-content:space-between;gap:.6rem;margin-top:1rem}
+.btn{background:var(--primary);color:#fff;border:0;padding:.6rem 1.1rem;border-radius:8px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s,transform .1s}
+.btn:hover:not(:disabled){background:var(--primary-dark)}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--primary);border:1px solid var(--primary)}
+.btn.ghost:hover:not(:disabled){background:#f0fdf4}
+
+.sidebar{display:flex;flex-direction:column;gap:.9rem;position:sticky;top:1rem}
+@media(max-width:900px){.sidebar{position:static}}
+.sidebar h2{font-size:1.2rem;color:var(--primary);border-bottom:2px solid var(--accent);padding-bottom:.4rem}
+.progress{font-size:.85rem;color:var(--muted)}
+.bar{height:6px;background:#e5ebe8;border-radius:99px;overflow:hidden;margin-top:.3rem}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .4s}
+input,select,textarea{width:100%;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;font:inherit;font-size:.92rem;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--primary)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{border:1px solid var(--border);background:#fff;color:var(--text);border-radius:999px;padding:.15rem .8rem;font:inherit;font-size:.82rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--primary);color:#fff;border-color:var(--primary)}
+.playlist{list-style:none;overflow-y:auto;max-height:420px;display:flex;flex-direction:column;gap:.5rem;padding-left:.2rem}
+.item{padding:.7rem .8rem;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:#fff;transition:all .2s;display:flex;gap:.6rem;align-items:flex-start}
+.item:hover{background:#f0fdf4;border-color:var(--primary)}
+.item.active{background:#e6f4ea;border-color:var(--primary);border-right:4px solid var(--primary)}
+.item .chk{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #cbd5d0;display:grid;place-items:center;font-size:.7rem;color:#fff;margin-top:.15rem}
+.item.done .chk{background:var(--primary);border-color:var(--primary)}
+.item h4{font-size:.93rem;line-height:1.5}
+.item small{color:var(--muted);font-size:.78rem}
+.none{text-align:center;color:var(--muted);padding:1rem;font-size:.9rem}
+
+.admin{display:none;border:1px dashed var(--accent);background:#fffdf5}
+.admin.on{display:block}
+.admin h3{font-size:1rem;color:var(--primary);margin-bottom:.6rem}
+.field{margin-bottom:.6rem}
+.field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:.15rem}
+.admin .row{display:flex;gap:.5rem;margin-top:.5rem}
+.admin .row .btn{flex:1;padding:.5rem}
+.admin p.hint{font-size:.78rem;color:var(--muted);margin-top:.5rem}
+
+footer{background:var(--card);border-top:1px solid var(--border);text-align:center;padding:1rem;font-size:.88rem;color:var(--muted);margin-top:auto}
+.toast{position:fixed;bottom:1.2rem;left:50%;transform:translate(-50%,120px);background:var(--primary-dark);color:#fff;padding:.6rem 1.2rem;border-radius:10px;transition:transform .3s;z-index:9;font-size:.92rem}
+.toast.show{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>رواق الخط العربي / وائل دهشان</h1>
+  <p>منصة تعليمية متخصصة في فنون الخط العربي وقواعد لغة الضاد</p>
+  <div class="stats" aria-live="polite">
+    <div class="stat"><span class="dot" aria-hidden="true"></span>عدد الزوار: <b id="uniqueCount">…</b></div>
+    <div class="stat">إجمالي الزيارات: <b id="visitCount">…</b></div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card" aria-label="مشغل الدرس">
+    <div class="frame" id="frame">
+      <iframe id="player" title="مشغل الفيديو" loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="empty">رابط الفيديو غير صالح. تأكد من أنه رابط يوتيوب صحيح.</div>
+    </div>
+    <div class="lesson">
+      <span class="tag" id="lessonCategory"></span>
+      <h2 id="lessonTitle"></h2>
+      <div class="notes"><strong>القواعد والشواهد التعليمية:</strong><p id="lessonNotes"></p></div>
+      <div class="nav">
+        <button class="btn ghost" id="nextBtn" type="button">الدرس التالي ←</button>
+        <button class="btn ghost" id="prevBtn" type="button">→ الدرس السابق</button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="card">
+      <h2>قائمة الدروس</h2>
+      <div class="progress" style="margin-top:.6rem">
+        <span id="progressText"></span>
+        <div class="bar"><i id="progressBar"></i></div>
+      </div>
+      <div style="margin:.8rem 0 .6rem"><input type="search" id="search" placeholder="ابحث عن درس…" aria-label="ابحث عن درس"></div>
+      <div class="chips" id="chips" role="group" aria-label="تصفية حسب التصنيف" style="margin-bottom:.8rem"></div>
+      <ul class="playlist" id="lessonsList"></ul>
+    </div>
+
+    <!-- لوحة الإدارة: تظهر فقط عند فتح الصفحة بالرابط ...#admin -->
+    <div class="card admin" id="admin">
+      <h3>+ إضافة درس جديد</h3>
+      <form id="addForm">
+        <div class="field"><label for="newTitle">عنوان الدرس</label><input id="newTitle" required placeholder="مثال: رسم حرف الراء والزاي"></div>
+        <div class="field"><label for="newCategory">التصنيف</label>
+          <select id="newCategory">
+            <option>خط النسخ</option><option>خط الرقعة</option>
+            <option value="اتصال الحروف">اتصال الحروف والقنطرة</option>
+            <option value="قواعد وإعراب">قواعد وضبط وإعراب</option>
+          </select></div>
+        <div class="field"><label for="newUrl">رابط يوتيوب</label><input type="url" id="newUrl" required placeholder="https://www.youtube.com/watch?v=..."></div>
+        <div class="field"><label for="newNotes">القواعد والشواهد</label><textarea id="newNotes" rows="2"></textarea></div>
+        <button class="btn" style="width:100%" type="submit">حفظ الدرس</button>
+      </form>
+      <div class="row">
+        <button class="btn ghost" id="exportBtn" type="button">نسخ الدروس المضافة</button>
+        <button class="btn ghost" id="resetBtn" type="button">حذف المضافة</button>
+      </div>
+      <p class="hint">الدروس المضافة هنا تُحفظ في هذا المتصفح فقط. لتظهر لجميع الزوار: انسخها والصقها داخل مصفوفة LESSONS في الكود.</p>
+    </div>
+  </aside>
+</main>
+
+<footer>&copy; <span id="year"></span> جميع الحقوق محفوظة — رواق الخط العربي / وائل دهشان</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ========== الإعدادات ========== */
+  // اسم فريد لمنصتك في خدمة العدّاد. غيّره إن أردت، ولا تغيّره لاحقاً وإلا بدأ العدّاد من الصفر.
+  const COUNTER_NS = 'rewaq-alkhat-dahshan';
+
+  // الدروس الأساسية (تظهر لجميع الزوار). استبدل الروابط بروابط دروسك الحقيقية.
+  const LESSONS = [
+    { id: 1, title: 'الدرس الأول: ميزان حرف الألف وميلانه في خط النسخ', category: 'خط النسخ',
+      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      notes: 'يُقدّر طول الألف في خط النسخ بخمس نقاط بميزان القلم، مع ميلان يسير جداً جهة اليسار من الأعلى لتأمين الرشاقة والتوازن البصري.' },
+    { id: 2, title: 'الدرس الثاني: قواعد رسم حرفي الباء والتاء', category: 'خط النسخ',
+      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      notes: 'بداية سنّ الباء تبدأ بنقطة مائلة، والاتساع الأفقي يستقر على السطر بمقدار 4 نقاط، مع الارتفاع الرشيق في الطرف الأخير.' },
+    { id: 3, title: 'الدرس الثالث: فن القنطرة وحالات الوصل بين الأسنان', category: 'اتصال الحروف',
+      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      notes: 'تُستخدم القنطرة لرفع سنّة الحرف فوق السطر عند تتابع الأسنان (مثل: بيت، نبات) لتجنب تشابه الكلمات وتوضيح الحركات.' },
+    { id: 4, title: 'الدرس الرابع: قواعد التشكيل والضبط الإعرابي', category: 'قواعد وإعراب',
+      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      notes: 'يُراعى عند وضع الفتحة والكسرة والضمة أن تكون بحجم ثلث قطر قلم الكتابة، مع المحافظة على التوازي التام لزوايا الحركات.' }
+  ];
+
+  /* ========== أدوات مساعدة ========== */
+  const $ = id => document.getElementById(id);
+  const KEYS = { custom: 'rewaq_v3_custom', watched: 'rewaq_v3_watched', legacy: 'rewaq_v2_lessons' };
+  const store = {
+    get(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+    del(k) { try { localStorage.removeItem(k); } catch {} }
+  };
+  const nf = new Intl.NumberFormat('ar-u-nu-latn');
+  let toastTimer;
+  function toast(msg) {
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  function embedUrl(url, autoplay) {
+    const m = String(url || '').match(/(?:youtu\.be\/|\/embed\/|\/shorts\/|watch\?v=|&v=)([\w-]{11})/);
+    return m ? `https://www.youtube-nocookie.com/embed/${m[1]}?rel=0${autoplay ? '&autoplay=1' : ''}` : null;
+  }
+
+  /* ========== البيانات ========== */
+  // ترحيل الدروس المضافة من النسخة القديمة (إن وُجدت)
+  if (!store.get(KEYS.custom, null)) {
+    const old = store.get(KEYS.legacy, null);
+    if (Array.isArray(old)) {
+      store.set(KEYS.custom, old.filter(l => l && ![1, 2, 3, 4, 5].includes(l.id) && embedUrl(l.url)));
+    }
+  }
+  let custom = store.get(KEYS.custom, []);
+  let watched = new Set(store.get(KEYS.watched, []));
+  const all = () => [...custom, ...LESSONS];
+  const state = { active: all()[0].id, query: '', cat: '' };
+
+  /* ========== العرض ========== */
+  function visible() {
+    const q = state.query.trim();
+    return all().filter(l => (!state.cat || l.category === state.cat) && (!q || (l.title + ' ' + (l.notes || '')).includes(q)));
+  }
+
+  function renderChips() {
+    const box = $('chips'); box.textContent = '';
+    ['', ...new Set(all().map(l => l.category))].forEach(c => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = c || 'الكل';
+      b.setAttribute('aria-pressed', String(state.cat === c));
+      b.onclick = () => { state.cat = c; renderChips(); renderList(); };
+      box.appendChild(b);
+    });
+  }
+
+  function renderProgress() {
+    const list = all(), done = list.filter(l => watched.has(l.id)).length;
+    $('progressText').textContent = `أنجزت ${nf.format(done)} من ${nf.format(list.length)} دروس`;
+    $('progressBar').style.width = (list.length ? done / list.length * 100 : 0) + '%';
+  }
+
+  function renderList() {
+    const ul = $('lessonsList'); ul.textContent = '';
+    const items = visible();
+    if (!items.length) { const li = document.createElement('li'); li.className = 'none'; li.textContent = 'لا توجد دروس مطابقة.'; ul.appendChild(li); return; }
+    items.forEach(l => {
+      const li = document.createElement('li');
+      li.className = 'item' + (l.id === state.active ? ' active' : '') + (watched.has(l.id) ? ' done' : '');
+      li.tabIndex = 0; li.setAttribute('role', 'button');
+      const chk = document.createElement('span'); chk.className = 'chk'; chk.textContent = watched.has(l.id) ? '✓' : '';
+      const wrap = document.createElement('div');
+      const h = document.createElement('h4'); h.textContent = l.title;
+      const s = document.createElement('small'); s.textContent = 'التصنيف: ' + l.category;
+      wrap.append(h, s); li.append(chk, wrap);
+      li.onclick = () => show(l.id, true);
+      li.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(l.id, true); } };
+      ul.appendChild(li);
+    });
+  }
+
+  function show(id, autoplay) {
+    const list = all(), idx = list.findIndex(l => l.id === id);
+    if (idx < 0) return;
+    const l = list[idx]; state.active = id;
+    $('lessonTitle').textContent = l.title;
+    $('lessonCategory').textContent = l.category;
+    $('lessonNotes').textContent = l.notes || 'لا توجد ملاحظات مرفقة بهذا الدرس.';
+    const src = embedUrl(l.url, autoplay);
+    $('frame').classList.toggle('invalid', !src);
+    $('player').src = src || 'about:blank';
+    $('prevBtn').disabled = idx === 0;
+    $('nextBtn').disabled = idx === list.length - 1;
+    if (autoplay) { watched.add(id); store.set(KEYS.watched, [...watched]); }
+    renderProgress(); renderList();
+  }
+
+  const step = d => { const list = all(), i = list.findIndex(l => l.id === state.active); if (list[i + d]) show(list[i + d].id, true); };
+  $('prevBtn').onclick = () => step(-1);
+  $('nextBtn').onclick = () => step(1);
+  $('search').addEventListener('input', e => { state.query = e.target.value; renderList(); });
+
+  /* ========== لوحة الإدارة (#admin) ========== */
+  const syncAdmin = () => $('admin').classList.toggle('on', location.hash === '#admin');
+  window.addEventListener('hashchange', syncAdmin); syncAdmin();
+
+  $('addForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const url = $('newUrl').value.trim();
+    if (!embedUrl(url)) { toast('رابط يوتيوب غير صالح'); return; }
+    const lesson = { id: Date.now(), title: $('newTitle').value.trim(), category: $('newCategory').value, url, notes: $('newNotes').value.trim() };
+    custom.unshift(lesson); store.set(KEYS.custom, custom);
+    e.target.reset(); renderChips(); show(lesson.id, true); toast('تم حفظ الدرس');
+  });
+  $('exportBtn').onclick = async () => {
+    if (!custom.length) { toast('لا توجد دروس مضافة'); return; }
+    const text = custom.map(l => '    ' + JSON.stringify(l, null, 2).replace(/\n/g, '\n    ')).join(',\n');
+    try { await navigator.clipboard.writeText(text); toast('تم النسخ، الصقه داخل LESSONS'); } catch { prompt('انسخ النص:', text); }
+  };
+  $('resetBtn').onclick = () => {
+    if (!custom.length || !confirm('حذف جميع الدروس المضافة من هذا المتصفح؟')) return;
+    custom = []; store.del(KEYS.custom); state.active = LESSONS[0].id; renderChips(); show(state.active, false);
+  };
+
+  /* ========== عدّاد الزوار ========== */
+  // خدمتان مجانيتان: تُجرَّب الأولى ثم الثانية عند الفشل.
+  const providers = [
+    { url: (k, inc) => `https://api.counterapi.dev/v1/${COUNTER_NS}/${k}${inc ? '/up' : ''}`, read: d => d.count },
+    { url: (k, inc) => `https://abacus.jasoncameron.dev/${inc ? 'hit' : 'get'}/${COUNTER_NS}/${k}`, read: d => d.value }
+  ];
+  async function counter(key, increment) {
+    for (const p of providers) {
+      const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 6000);
+      try {
+        const r = await fetch(p.url(key, increment), { signal: ctl.signal });
+        if (!r.ok) continue;
+        const n = Number(p.read(await r.json()));
+        if (Number.isFinite(n)) return n;
+      } catch {} finally { clearTimeout(timer); }
+    }
+    return null;
+  }
+  function countUp(el, to) {
+    if (to === null) { el.textContent = '—'; return; }
+    const t0 = performance.now(), dur = 800;
+    (function tick(t) {
+      const p = Math.min((t - t0) / dur, 1);
+      el.textContent = nf.format(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  async function initCounters() {
+    let newVisit = true, newVisitor = true;
+    try { newVisit = !sessionStorage.getItem('rewaq_visit'); sessionStorage.setItem('rewaq_visit', '1'); } catch {}
+    try { newVisitor = !localStorage.getItem('rewaq_visitor'); } catch {}
+    const [visits, unique] = await Promise.all([counter('visits', newVisit), counter('unique', newVisitor)]);
+    if (unique !== null && newVisitor) { try { localStorage.setItem('rewaq_visitor', '1'); } catch {} }
+    countUp($('visitCount'), visits);
+    countUp($('uniqueCount'), unique);
+  }
+
+  /* ========== التشغيل ========== */
+  $('year').textContent = new Date().getFullYear();
+  renderChips();
+  show(state.active, false);
+  initCounters();
+})();
+</script>
+</body>
+</html>
